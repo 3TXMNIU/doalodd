@@ -3,289 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>تحميل يوتيوب - يلا سوزك</title>
-  
+  <title>يلا سوزك - تحميل يوتيوب</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#000000">
-  
+  <meta name="theme-color" content="#1a1a2e">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    
-    .container {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 30px;
-      padding: 30px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-    
-    h1 {
-      text-align: center;
-      color: #fff;
-      margin-bottom: 10px;
-      font-size: 28px;
-    }
-    
-    .sub {
-      text-align: center;
-      color: #aaa;
-      margin-bottom: 30px;
-      font-size: 14px;
-    }
-    
-    .status {
-      background: #0f0f1a;
-      border-radius: 50px;
-      padding: 12px 20px;
-      margin-bottom: 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid #2a2a3e;
-    }
-    
-    .status span:first-child {
-      color: #4ade80;
-      font-weight: bold;
-    }
-    
-    .status span:last-child {
-      color: #fff;
-      font-size: 14px;
-    }
-    
-    .youtube-link {
-      background: #ff0000;
-      border-radius: 50px;
-      padding: 14px 20px;
-      margin-bottom: 25px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-    
-    .youtube-link a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      display: block;
-    }
-    
-    .youtube-link:hover {
-      transform: scale(1.02);
-    }
-    
-    .input-section {
-      margin-bottom: 25px;
-    }
-    
-    .input-section label {
-      color: #ccc;
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
-    
-    .url-input {
-      width: 100%;
-      padding: 15px;
-      border-radius: 15px;
-      border: none;
-      background: #0f0f1a;
-      color: white;
-      font-size: 14px;
-      margin-bottom: 10px;
-      border: 1px solid #2a2a3e;
-    }
-    
-    .button-group {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .btn {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-size: 14px;
-    }
-    
-    .btn-primary {
-      background: #3b82f6;
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      background: #2563eb;
-    }
-    
-    .btn-secondary {
-      background: #334155;
-      color: white;
-    }
-    
-    .btn-secondary:hover {
-      background: #475569;
-    }
-    
-    .quality-section {
-      margin: 25px 0;
-    }
-    
-    .quality-title {
-      color: #ccc;
-      margin-bottom: 12px;
-      font-size: 14px;
-    }
-    
-    .quality-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-    
-    .quality-btn {
-      padding: 12px;
-      background: #0f0f1a;
-      border: 1px solid #2a2a3e;
-      border-radius: 15px;
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-align: center;
-    }
-    
-    .quality-btn.selected {
-      background: #3b82f6;
-      border-color: #3b82f6;
-    }
-    
-    .download-btn {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(135deg, #4ade80, #22c55e);
-      border: none;
-      border-radius: 50px;
-      color: #1a1a2e;
-      font-weight: bold;
-      font-size: 18px;
-      cursor: pointer;
-      transition: transform 0.3s;
-      margin-top: 10px;
-    }
-    
-    .download-btn:hover {
-      transform: scale(1.02);
-    }
-    
-    .error {
-      color: #f87171;
-      text-align: center;
-      margin-top: 15px;
-      font-size: 13px;
-    }
-    
-    .success {
-      color: #4ade80;
-      text-align: center;
-      margin-top: 15px;
-      font-size: 13px;
-    }
-    
-    footer {
-      text-align: center;
-      margin-top: 25px;
-      color: #555;
-      font-size: 12px;
-    }
-    
-    .install-btn {
-      background: #8b5cf6;
-      margin-top: 15px;
-      display: none;
-    }
-    
-    @media (max-width: 480px) {
-      .container {
-        padding: 20px;
-      }
-      .quality-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body { background: linear-gradient(135deg, #1a1a2e, #16213e); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+    .container { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 30px; padding: 30px; width: 100%; max-width: 500px; box-shadow: 0 25px 45px rgba(0,0,0,0.3); }
+    h1 { text-align: center; color: #fff; margin-bottom: 5px; }
+    .sub { text-align: center; color: #aaa; margin-bottom: 25px; font-size: 13px; }
+    .status { background: #0f0f1a; border-radius: 50px; padding: 12px 20px; margin-bottom: 25px; display: flex; justify-content: space-between; border: 1px solid #2a2a3e; }
+    .status span:first-child { color: #4ade80; font-weight: bold; }
+    .status span:last-child { color: #fff; }
+    .youtube-link { background: #ff0000; border-radius: 50px; padding: 12px; text-align: center; margin-bottom: 25px; cursor: pointer; transition: 0.3s; }
+    .youtube-link:hover { transform: scale(1.02); }
+    .youtube-link a { color: white; text-decoration: none; font-weight: bold; display: block; }
+    .url-input { width: 100%; padding: 14px; border-radius: 15px; border: none; background: #0f0f1a; color: white; margin-bottom: 10px; border: 1px solid #2a2a3e; font-size: 14px; }
+    .button-group { display: flex; gap: 10px; margin-bottom: 25px; }
+    .btn { flex: 1; padding: 12px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .btn-primary { background: #3b82f6; color: white; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-secondary { background: #334155; color: white; }
+    .btn-secondary:hover { background: #475569; }
+    .quality-title { color: #ccc; margin-bottom: 12px; font-size: 14px; }
+    .quality-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 25px; }
+    .quality-btn { padding: 12px; background: #0f0f1a; border: 1px solid #2a2a3e; border-radius: 15px; color: white; text-align: center; cursor: pointer; transition: 0.3s; }
+    .quality-btn.selected { background: #3b82f6; border-color: #3b82f6; }
+    .download-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #4ade80, #22c55e); border: none; border-radius: 50px; color: #1a1a2e; font-weight: bold; font-size: 18px; cursor: pointer; transition: 0.3s; margin-top: 5px; }
+    .download-btn:hover { transform: scale(1.02); }
+    .message { text-align: center; margin-top: 15px; font-size: 13px; padding: 8px; border-radius: 10px; }
+    .error { color: #f87171; background: rgba(248,113,113,0.1); }
+    .success { color: #4ade80; background: rgba(74,222,128,0.1); }
+    .loading { color: #fbbf24; background: rgba(251,191,36,0.1); }
+    footer { text-align: center; margin-top: 20px; color: #555; font-size: 11px; }
+    @media (max-width: 480px) { .container { padding: 20px; } .quality-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-
 <div class="container">
   <h1>📥 يلا سوزك</h1>
   <div class="sub">تحميل الفيديو من يوتيوب</div>
-  
-  <div class="status">
-    <span>🟢 متصل</span>
-    <span>الرابط: يوتيوب</span>
+  <div class="status"><span>🟢 متصل</span><span>الرابط: يوتيوب</span></div>
+  <div class="youtube-link"><a href="https://www.youtube.com/watch?v=U78wdxeYxEA" target="_blank">🎬 رابط ويتوب ▶</a></div>
+  <input type="text" class="url-input" id="videoUrl" placeholder="الصق الرابط هنا...">
+  <div class="button-group">
+    <button class="btn btn-primary" id="pasteBtn">📋 لصق</button>
+    <button class="btn btn-secondary" id="scanBtn">📷 مسح</button>
   </div>
-  
-  <div class="youtube-link">
-    <a href="https://www.youtube.com/watch?v=U78wdxeYxEA&si=u_gwzH9_O70lZIGD" target="_blank">🎬 رابط ويتوب ▶</a>
+  <div class="quality-title">🎬 اختر الجودة المطلوبة</div>
+  <div class="quality-grid" id="qualityGrid">
+    <div class="quality-btn" data-quality="360p">فيديو عادي</div>
+    <div class="quality-btn" data-quality="720p">🎥 HD فيديو</div>
+    <div class="quality-btn" data-quality="144p">📦 حجم صغير</div>
+    <div class="quality-btn" data-quality="mp3">🎵 صوت فقط</div>
   </div>
-  
-  <div class="input-section">
-    <label>📎 رابط الفيديو</label>
-    <input type="text" class="url-input" id="videoUrl" placeholder="الصق الرابط هنا...">
-    <div class="button-group">
-      <button class="btn btn-primary" id="pasteBtn">📋 لصق</button>
-      <button class="btn btn-secondary" id="scanBtn">📷 مسح</button>
-    </div>
-  </div>
-  
-  <div class="quality-section">
-    <div class="quality-title">🎬 اختر الجودة المطلوبة</div>
-    <div class="quality-grid" id="qualityGrid">
-      <div class="quality-btn" data-quality="normal">فيديو عادي</div>
-      <div class="quality-btn" data-quality="hd">🎥 HD فيديو</div>
-      <div class="quality-btn" data-quality="small">📦 حجم صغير</div>
-      <div class="quality-btn" data-quality="audio">🎵 صوت فقط</div>
-    </div>
-  </div>
-  
   <button class="download-btn" id="downloadBtn">⬇ تحميل</button>
-  <div id="message"></div>
+  <div id="message" class="message"></div>
   <footer>تحقق من الاتصال بالإنترنت</footer>
 </div>
 
 <script>
-  // Service Worker للتثبيت
+  // مفتاح API الخاص بك
+  const API_KEY = "cydz-w.6hdCZg:cExTwC8nhPWdvAMYRJ9Rju5UKxzZQLvk4UVN8d_hjV4";
+  
+  // رابط API (عدله حسب الخدمة اللي عندك)
+  const API_URL = "https://api.cdz.com/v1/download"; // غير هذا الرابط إلى الرابط الصحيح لخدمتك
+  
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log('✅ Service Worker ثبت'))
-      .catch(err => console.log('❌ خطأ:', err));
+    navigator.serviceWorker.register('/sw.js').catch(console.log);
   }
   
-  // متغيرات
-  let selectedQuality = 'normal';
+  let selectedQuality = '360p';
   
-  // اختيار الجودة
   document.querySelectorAll('.quality-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       document.querySelectorAll('.quality-btn').forEach(b => b.classList.remove('selected'));
@@ -295,7 +84,6 @@
   });
   document.querySelector('.quality-btn').classList.add('selected');
   
-  // زر اللصق
   document.getElementById('pasteBtn').addEventListener('click', async () => {
     try {
       const text = await navigator.clipboard.readText();
@@ -306,7 +94,6 @@
     }
   });
   
-  // زر المسح
   document.getElementById('scanBtn').addEventListener('click', () => {
     showMessage('📷 ميزة المسح قريباً', 'error');
   });
@@ -314,25 +101,16 @@
   function showMessage(msg, type) {
     const msgDiv = document.getElementById('message');
     msgDiv.innerHTML = `<div class="${type}">${msg}</div>`;
-    setTimeout(() => msgDiv.innerHTML = '', 3000);
+    msgDiv.className = `message ${type}`;
+    setTimeout(() => { msgDiv.innerHTML = ''; msgDiv.className = 'message'; }, 4000);
   }
   
-  // استخراج ID الفيديو من رابط يوتيوب
   function getVideoId(url) {
-    const patterns = [
-      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/,
-      /youtube\.com\/embed\/([^&\n?#]+)/,
-      /youtube\.com\/shorts\/([^&\n?#]+)/
-    ];
-    for (let pattern of patterns) {
-      const match = url.match(pattern);
-      if (match) return match[1];
-    }
-    return null;
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+    return match ? match[1] : null;
   }
   
-  // زر التحميل - يعمل مباشرة
-  document.getElementById('downloadBtn').addEventListener('click', () => {
+  document.getElementById('downloadBtn').addEventListener('click', async () => {
     const url = document.getElementById('videoUrl').value;
     
     if (!url) {
@@ -346,53 +124,35 @@
       return;
     }
     
-    showMessage('🔄 جاري تجهيز التحميل...', 'success');
+    showMessage('🔄 جاري تجهيز التحميل...', 'loading');
     
-    let downloadLink = '';
-    
-    // استخدام مواقع تحميل مجانية تعمل حالياً
-    switch(selectedQuality) {
-      case 'normal':
-        // جودة 360p
-        downloadLink = `https://yt5s.com/en69/`;
-        break;
-      case 'hd':
-        // جودة 720p
-        downloadLink = `https://y2mate.nu/`;
-        break;
-      case 'small':
-        // جودة منخفضة
-        downloadLink = `https://savetube.app/`;
-        break;
-      case 'audio':
-        // صوت فقط
-        downloadLink = `https://ytmp3.nu/`;
-        break;
-    }
-    
-    // فتح موقع التحميل مع الرابط
-    window.open(`${downloadLink}?url=${encodeURIComponent(url)}`, '_blank');
-    showMessage('✅ تم فتح رابط التحميل', 'success');
-  });
-  
-  // زر التثبيت
-  let deferredPrompt;
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const installBtn = document.createElement('button');
-    installBtn.textContent = '📲 تثبيت التطبيق';
-    installBtn.className = 'download-btn install-btn';
-    installBtn.style.display = 'block';
-    installBtn.style.background = '#8b5cf6';
-    document.querySelector('.container').appendChild(installBtn);
-    
-    installBtn.addEventListener('click', () => {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(() => {
-        installBtn.style.display = 'none';
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+          url: url,
+          quality: selectedQuality,
+          format: selectedQuality === 'mp3' ? 'audio' : 'video'
+        })
       });
-    });
+      
+      const data = await response.json();
+      
+      if (data.downloadUrl || data.url) {
+        const downloadLink = data.downloadUrl || data.url;
+        window.open(downloadLink, '_blank');
+        showMessage('✅ بدأ التحميل بنجاح', 'success');
+      } else {
+        showMessage('❌ فشل التحميل: ' + (data.message || 'خطأ غير معروف'), 'error');
+      }
+    } catch(error) {
+      console.error(error);
+      showMessage('❌ خطأ في الاتصال بالخادم', 'error');
+    }
   });
 </script>
 </body>
