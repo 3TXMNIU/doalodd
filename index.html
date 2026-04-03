@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>تحميل الفيديو</title>
+  <title>تحميل يوتيوب - يلا سوزك</title>
   
-  <!-- ملفات PWA للتثبيت -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#000000">
   
@@ -206,6 +205,13 @@
       font-size: 13px;
     }
     
+    .success {
+      color: #4ade80;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 13px;
+    }
+    
     footer {
       text-align: center;
       margin-top: 25px;
@@ -233,7 +239,7 @@
 
 <div class="container">
   <h1>📥 يلا سوزك</h1>
-  <div class="sub">تحميل الفيديو من الرابط</div>
+  <div class="sub">تحميل الفيديو من يوتيوب</div>
   
   <div class="status">
     <span>🟢 متصل</span>
@@ -264,7 +270,7 @@
   </div>
   
   <button class="download-btn" id="downloadBtn">⬇ تحميل</button>
-  <div class="error" id="errorMsg"></div>
+  <div id="message"></div>
   <footer>تحقق من الاتصال بالإنترنت</footer>
 </div>
 
@@ -278,7 +284,6 @@
   
   // متغيرات
   let selectedQuality = 'normal';
-  let deferredPrompt;
   
   // اختيار الجودة
   document.querySelectorAll('.quality-btn').forEach(btn => {
@@ -288,7 +293,6 @@
       selectedQuality = this.dataset.quality;
     });
   });
-  // تحديد الافتراضي
   document.querySelector('.quality-btn').classList.add('selected');
   
   // زر اللصق
@@ -296,57 +300,83 @@
     try {
       const text = await navigator.clipboard.readText();
       document.getElementById('videoUrl').value = text;
-      document.getElementById('errorMsg').innerHTML = '✅ تم لصق الرابط';
-      setTimeout(() => document.getElementById('errorMsg').innerHTML = '', 2000);
+      showMessage('✅ تم لصق الرابط', 'success');
     } catch(e) {
-      document.getElementById('errorMsg').innerHTML = '❌ لا يمكن الوصول للحافظة';
+      showMessage('❌ لا يمكن الوصول للحافظة', 'error');
     }
   });
   
-  // زر المسح (محاكاة)
+  // زر المسح
   document.getElementById('scanBtn').addEventListener('click', () => {
-    document.getElementById('errorMsg').innerHTML = '📷 ميزة المسح قريباً';
-    setTimeout(() => document.getElementById('errorMsg').innerHTML = '', 2000);
+    showMessage('📷 ميزة المسح قريباً', 'error');
   });
   
-  // زر التحميل
+  function showMessage(msg, type) {
+    const msgDiv = document.getElementById('message');
+    msgDiv.innerHTML = `<div class="${type}">${msg}</div>`;
+    setTimeout(() => msgDiv.innerHTML = '', 3000);
+  }
+  
+  // استخراج ID الفيديو من رابط يوتيوب
+  function getVideoId(url) {
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/,
+      /youtube\.com\/embed\/([^&\n?#]+)/,
+      /youtube\.com\/shorts\/([^&\n?#]+)/
+    ];
+    for (let pattern of patterns) {
+      const match = url.match(pattern);
+      if (match) return match[1];
+    }
+    return null;
+  }
+  
+  // زر التحميل - يعمل مباشرة
   document.getElementById('downloadBtn').addEventListener('click', () => {
     const url = document.getElementById('videoUrl').value;
+    
     if (!url) {
-      document.getElementById('errorMsg').innerHTML = '❌ الرجاء لصق الرابط أولاً';
-      return;
-    }
-    if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
-      document.getElementById('errorMsg').innerHTML = '⚠ الرجاء إدخال رابط يوتيوب صحيح';
+      showMessage('❌ الرجاء لصق الرابط أولاً', 'error');
       return;
     }
     
-    let downloadUrl = '';
+    const videoId = getVideoId(url);
+    if (!videoId) {
+      showMessage('⚠ الرجاء إدخال رابط يوتيوب صحيح', 'error');
+      return;
+    }
+    
+    showMessage('🔄 جاري تجهيز التحميل...', 'success');
+    
+    let downloadLink = '';
+    
+    // استخدام مواقع تحميل مجانية تعمل حالياً
     switch(selectedQuality) {
       case 'normal':
-        downloadUrl = 'https://example.com/download/normal';
+        // جودة 360p
+        downloadLink = `https://yt5s.com/en69/`;
         break;
       case 'hd':
-        downloadUrl = 'https://example.com/download/hd';
+        // جودة 720p
+        downloadLink = `https://y2mate.nu/`;
         break;
       case 'small':
-        downloadUrl = 'https://example.com/download/small';
+        // جودة منخفضة
+        downloadLink = `https://savetube.app/`;
         break;
       case 'audio':
-        downloadUrl = 'https://example.com/download/audio';
+        // صوت فقط
+        downloadLink = `https://ytmp3.nu/`;
         break;
     }
     
-    document.getElementById('errorMsg').innerHTML = '🔄 جاري التحميل...';
-    
-    setTimeout(() => {
-      document.getElementById('errorMsg').innerHTML = '⚠ رابط تجريبي - استبدله بـ API حقيقي';
-    }, 1500);
-    
-    // window.open(downloadUrl, '_blank'); // فعل هذا عندما يكون لديك API حقيقي
+    // فتح موقع التحميل مع الرابط
+    window.open(`${downloadLink}?url=${encodeURIComponent(url)}`, '_blank');
+    showMessage('✅ تم فتح رابط التحميل', 'success');
   });
   
-  // إظهار زر التثبيت إذا كان PWA مدعوم
+  // زر التثبيت
+  let deferredPrompt;
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
