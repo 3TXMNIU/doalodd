@@ -1,20 +1,8 @@
 {
-  "name": "يلا سوزك - تحميل الفيديو",
-  "short_name": "يلا سوزك",
-  "start_url": "/doa/",
+  "name": "يلا سوزك",
+  "short_name": "سوزك",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#1a1a2e",
-  "background_color": "#1a1a2e",
-  "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "background_color": "#1a1a2e"
 }
